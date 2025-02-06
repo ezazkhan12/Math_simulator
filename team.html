@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adjoint of a 3x3 Matrix</title>
+    <style>
+        table {
+            margin: 10px 0;
+            border-collapse: collapse;
+        }
+        td {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            border: 1px solid black;
+        }
+        input {
+            width: 40px;
+            text-align: center;
+        }
+        button {
+            margin: 10px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Enter values for Matrix A</h2>
+    <table>
+        <tr>
+            <td><input type="number" id="a00"></td>
+            <td><input type="number" id="a01"></td>
+            <td><input type="number" id="a02"></td>
+        </tr>
+        <tr>
+            <td><input type="number" id="a10"></td>
+            <td><input type="number" id="a11"></td>
+            <td><input type="number" id="a12"></td>
+        </tr>
+        <tr>
+            <td><input type="number" id="a20"></td>
+            <td><input type="number" id="a21"></td>
+            <td><input type="number" id="a22"></td>
+        </tr>
+    </table>
+
+    <button onclick="calculateAdjoint()">Find Adjoint</button>
+
+    <h2>Adjoint of Matrix A</h2>
+    <table>
+        <tr>
+            <td id="r00"></td> <td id="r01"></td> <td id="r02"></td>
+        </tr>
+        <tr>
+            <td id="r10"></td> <td id="r11"></td> <td id="r12"></td>
+        </tr>
+        <tr>
+            <td id="r20"></td> <td id="r21"></td> <td id="r22"></td>
+        </tr>
+    </table>
+
+    <script>
+        function calculateAdjoint() {
+            // Get matrix values from input fields
+            let A = [
+                [parseFloat(document.getElementById('a00').value) || 0, parseFloat(document.getElementById('a01').value) || 0, parseFloat(document.getElementById('a02').value) || 0],
+                [parseFloat(document.getElementById('a10').value) || 0, parseFloat(document.getElementById('a11').value) || 0, parseFloat(document.getElementById('a12').value) || 0],
+                [parseFloat(document.getElementById('a20').value) || 0, parseFloat(document.getElementById('a21').value) || 0, parseFloat(document.getElementById('a22').value) || 0]
+            ];
+
+            // Function to compute determinant of a 2x2 matrix
+            function determinant2x2(m) {
+                return (m[0][0] * m[1][1]) - (m[0][1] * m[1][0]);
+            }
+
+            // Compute cofactor matrix
+            let cofactors = [
+                [
+                    determinant2x2([[A[1][1], A[1][2]], [A[2][1], A[2][2]]]),
+                    -determinant2x2([[A[1][0], A[1][2]], [A[2][0], A[2][2]]]),
+                    determinant2x2([[A[1][0], A[1][1]], [A[2][0], A[2][1]]])
+                ],
+                [
+                    -determinant2x2([[A[0][1], A[0][2]], [A[2][1], A[2][2]]]),
+                    determinant2x2([[A[0][0], A[0][2]], [A[2][0], A[2][2]]]),
+                    -determinant2x2([[A[0][0], A[0][1]], [A[2][0], A[2][1]]])
+                ],
+                [
+                    determinant2x2([[A[0][1], A[0][2]], [A[1][1], A[1][2]]]),
+                    -determinant2x2([[A[0][0], A[0][2]], [A[1][0], A[1][2]]]),
+                    determinant2x2([[A[0][0], A[0][1]], [A[1][0], A[1][1]]])
+                ]
+            ];
+
+            // Compute adjoint by transposing the cofactor matrix
+            let adjoint = [
+                [cofactors[0][0], cofactors[1][0], cofactors[2][0]],
+                [cofactors[0][1], cofactors[1][1], cofactors[2][1]],
+                [cofactors[0][2], cofactors[1][2], cofactors[2][2]]
+            ];
+
+            // Display the adjoint matrix
+            document.getElementById('r00').innerText = adjoint[0][0];
+            document.getElementById('r01').innerText = adjoint[0][1];
+            document.getElementById('r02').innerText = adjoint[0][2];
+
+            document.getElementById('r10').innerText = adjoint[1][0];
+            document.getElementById('r11').innerText = adjoint[1][1];
+            document.getElementById('r12').innerText = adjoint[1][2];
+
+            document.getElementById('r20').innerText = adjoint[2][0];
+            document.getElementById('r21').innerText = adjoint[2][1];
+            document.getElementById('r22').innerText = adjoint[2][2];
+        }
+    </script>
+    <footer style="margin-top: 20px; text-align: center;">
+    <p>Created by Ezaz Khan</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaussian Elimination Solver (Fraction Result)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .matrix input {
+            width: 60px;
+            padding: 8px;
+            margin: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #solution {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Gaussian Elimination Solver</h2>
+        <p>Enter the coefficients:</p>
+
+        <!-- Matrix Input -->
+        <div class="matrix">
+            <input type="number" id="a11" placeholder="a11">
+            <input type="number" id="a12" placeholder="a12">
+            <input type="number" id="a13" placeholder="a13">
+            <input type="number" id="b1" placeholder="b1">
+            <br>
+            <input type="number" id="a21" placeholder="a21">
+            <input type="number" id="a22" placeholder="a22">
+            <input type="number" id="a23" placeholder="a23">
+            <input type="number" id="b2" placeholder="b2">
+            <br>
+            <input type="number" id="a31" placeholder="a31">
+            <input type="number" id="a32" placeholder="a32">
+            <input type="number" id="a33" placeholder="a33">
+            <input type="number" id="b3" placeholder="b3">
+        </div>
+
+        <button onclick="solveGaussian()">Solve</button>
+
+        <p id="solution"></p>
+
+        <div class="footer">Created by Ezaz Khan</div>
+    </div>
+
+    <script>
+        // Helper function to create a fraction
+        function frac(numerator, denominator = 1) {
+            return { numerator, denominator };
+        }
+
+        // Helper function to add two fractions
+        function addFractions(a, b) {
+            let numerator = a.numerator * b.denominator + b.numerator * a.denominator;
+            let denominator = a.denominator * b.denominator;
+            return simplifyFraction(frac(numerator, denominator));
+        }
+
+        // Helper function to subtract two fractions
+        function subtractFractions(a, b) {
+            let numerator = a.numerator * b.denominator - b.numerator * a.denominator;
+            let denominator = a.denominator * b.denominator;
+            return simplifyFraction(frac(numerator, denominator));
+        }
+
+        // Helper function to multiply two fractions
+        function multiplyFractions(a, b) {
+            let numerator = a.numerator * b.numerator;
+            let denominator = a.denominator * b.denominator;
+            return simplifyFraction(frac(numerator, denominator));
+        }
+
+        // Helper function to divide two fractions
+        function divideFractions(a, b) {
+            let numerator = a.numerator * b.denominator;
+            let denominator = a.denominator * b.numerator;
+            return simplifyFraction(frac(numerator, denominator));
+        }
+
+        // Helper function to simplify a fraction
+        function simplifyFraction(fraction) {
+            let gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
+            let divisor = gcd(fraction.numerator, fraction.denominator);
+            return frac(fraction.numerator / divisor, fraction.denominator / divisor);
+        }
+
+        // Helper function to display a fraction as a string
+        function fractionToString(fraction) {
+            if (fraction.denominator === 1) {
+                return fraction.numerator.toString();
+            } else {
+                return `${fraction.numerator}/${fraction.denominator}`;
+            }
+        }
+
+        // Main Gaussian elimination function
+        function solveGaussian() {
+            // Get user input values and convert to fractions
+            let a = [
+                [frac(parseInput("a11")), frac(parseInput("a12")), frac(parseInput("a13")), frac(parseInput("b1"))],
+                [frac(parseInput("a21")), frac(parseInput("a22")), frac(parseInput("a23")), frac(parseInput("b2"))],
+                [frac(parseInput("a31")), frac(parseInput("a32")), frac(parseInput("a33")), frac(parseInput("b3"))]
+            ];
+
+            let n = 3; // Number of variables
+
+            // Perform Gaussian Elimination
+            for (let i = 0; i < n; i++) {
+                // Make the diagonal element 1
+                let pivot = a[i][i];
+                for (let j = 0; j <= n; j++) {
+                    a[i][j] = divideFractions(a[i][j], pivot);
+                }
+
+                // Make the elements below the diagonal 0
+                for (let k = i + 1; k < n; k++) {
+                    let factor = a[k][i];
+                    for (let j = 0; j <= n; j++) {
+                        a[k][j] = subtractFractions(a[k][j], multiplyFractions(factor, a[i][j]));
+                    }
+                }
+            }
+
+            // Back-substitution to find solutions
+            let x = new Array(n);
+            for (let i = n - 1; i >= 0; i--) {
+                x[i] = a[i][n];
+                for (let j = i + 1; j < n; j++) {
+                    x[i] = subtractFractions(x[i], multiplyFractions(a[i][j], x[j]));
+                }
+            }
+
+            // Display the solution in fraction form
+            document.getElementById("solution").innerHTML = `x = ${fractionToString(x[0])}, y = ${fractionToString(x[1])}, z = ${fractionToString(x[2])}`;
+        }
+
+        // Helper function to parse input values
+        function parseInput(id) {
+            let value = parseFloat(document.getElementById(id).value);
+            return isNaN(value) ? 0 : value;
+        }
+    </script>
+</body>
+</html>

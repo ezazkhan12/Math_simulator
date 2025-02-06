@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Determinant Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 50px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        #matrix {
+            margin: 20px;
+        }
+
+        input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>3×3 Matrix Determinant Calculator</h2>
+        <div id="matrix">
+            <input type="number" id="a11" value="1"> <input type="number" id="a12" value="2"> <input type="number" id="a13" value="3"><br>
+            <input type="number" id="a21" value="4"> <input type="number" id="a22" value="5"> <input type="number" id="a23" value="6"><br>
+            <input type="number" id="a31" value="7"> <input type="number" id="a32" value="8"> <input type="number" id="a33" value="9"><br>
+        </div>
+        <button onclick="calculateDeterminant()">Calculate Determinant</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateDeterminant() {
+            // Get values from inputs and handle empty inputs
+            let a11 = parseFloat(document.getElementById("a11").value) || 0;
+            let a12 = parseFloat(document.getElementById("a12").value) || 0;
+            let a13 = parseFloat(document.getElementById("a13").value) || 0;
+            let a21 = parseFloat(document.getElementById("a21").value) || 0;
+            let a22 = parseFloat(document.getElementById("a22").value) || 0;
+            let a23 = parseFloat(document.getElementById("a23").value) || 0;
+            let a31 = parseFloat(document.getElementById("a31").value) || 0;
+            let a32 = parseFloat(document.getElementById("a32").value) || 0;
+            let a33 = parseFloat(document.getElementById("a33").value) || 0;
+
+            // Calculate determinant
+            let determinant = 
+                a11 * (a22 * a33 - a23 * a32) -
+                a12 * (a21 * a33 - a23 * a31) +
+                a13 * (a21 * a32 - a22 * a31);
+
+            // Display result
+            document.getElementById("result").innerText = "Determinant: " + determinant;
+        }
+    </script>
+    <footer>
+      created by Ezaz khan
+    </footer>
+</body>
+</html>

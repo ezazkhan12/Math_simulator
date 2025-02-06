@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3x3 Matrix Addition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .matrix {
+            display: inline-block;
+            margin: 10px;
+        }
+        .matrix input {
+            width: 50px;
+            margin: 2px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>3x3 Matrix Addition</h2>
+
+<div>
+    <h3>Matrix A</h3>
+    <div class="matrix" id="matrixA">
+        <input type="number" id="a11">
+        <input type="number" id="a12">
+        <input type="number" id="a13"><br>
+        <input type="number" id="a21">
+        <input type="number" id="a22">
+        <input type="number" id="a23"><br>
+        <input type="number" id="a31">
+        <input type="number" id="a32">
+        <input type="number" id="a33">
+    </div>
+
+    <h3>Matrix B</h3>
+    <div class="matrix" id="matrixB">
+        <input type="number" id="b11">
+        <input type="number" id="b12">
+        <input type="number" id="b13"><br>
+        <input type="number" id="b21">
+        <input type="number" id="b22">
+        <input type="number" id="b23"><br>
+        <input type="number" id="b31">
+        <input type="number" id="b32">
+        <input type="number" id="b33">
+    </div>
+</div>
+
+<button onclick="addMatrices()">Add Matrices</button>
+
+<div class="result">
+    <h3>Result</h3>
+    <div id="resultMatrix">
+        <span id="r11">0</span>
+        <span id="r12">0</span>
+        <span id="r13">0</span><br>
+        <span id="r21">0</span>
+        <span id="r22">0</span>
+        <span id="r23">0</span><br>
+        <span id="r31">0</span>
+        <span id="r32">0</span>
+        <span id="r33">0</span>
+    </div>
+</div>
+
+<script>
+    function addMatrices() {
+        // Get values from Matrix A
+        const a11 = parseInt(document.getElementById('a11').value) || 0;
+        const a12 = parseInt(document.getElementById('a12').value) || 0;
+        const a13 = parseInt(document.getElementById('a13').value) || 0;
+        const a21 = parseInt(document.getElementById('a21').value) || 0;
+        const a22 = parseInt(document.getElementById('a22').value) || 0;
+        const a23 = parseInt(document.getElementById('a23').value) || 0;
+        const a31 = parseInt(document.getElementById('a31').value) || 0;
+        const a32 = parseInt(document.getElementById('a32').value) || 0;
+        const a33 = parseInt(document.getElementById('a33').value) || 0;
+
+        // Get values from Matrix B
+        const b11 = parseInt(document.getElementById('b11').value) || 0;
+        const b12 = parseInt(document.getElementById('b12').value) || 0;
+        const b13 = parseInt(document.getElementById('b13').value) || 0;
+        const b21 = parseInt(document.getElementById('b21').value) || 0;
+        const b22 = parseInt(document.getElementById('b22').value) || 0;
+        const b23 = parseInt(document.getElementById('b23').value) || 0;
+        const b31 = parseInt(document.getElementById('b31').value) || 0;
+        const b32 = parseInt(document.getElementById('b32').value) || 0;
+        const b33 = parseInt(document.getElementById('b33').value) || 0;
+
+        // Calculate the result
+        const r11 = a11 + b11;
+        const r12 = a12 + b12;
+        const r13 = a13 + b13;
+        const r21 = a21 + b21;
+        const r22 = a22 + b22;
+        const r23 = a23 + b23;
+        const r31 = a31 + b31;
+        const r32 = a32 + b32;
+        const r33 = a33 + b33;
+
+        // Display the result
+        document.getElementById('r11').textContent = r11;
+        document.getElementById('r12').textContent = r12;
+        document.getElementById('r13').textContent = r13;
+        document.getElementById('r21').textContent = r21;
+        document.getElementById('r22').textContent = r22;
+        document.getElementById('r23').textContent = r23;
+        document.getElementById('r31').textContent = r31;
+        document.getElementById('r32').textContent = r32;
+        document.getElementById('r33').textContent = r33;
+    }
+</script>
+<footer style="margin-top: 20px; text-align: center;">
+    <p>Created by Ezaz Khan</p>
+</footer>
+</body>
+</html>
