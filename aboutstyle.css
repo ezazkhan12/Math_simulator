@@ -1,0 +1,74 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2b0000; /* Dark Red Background */
+    color: #ff4d4d; /* Bright Red Text */
+    text-align: center;
+}
+
+/* Header Styles */
+h1 {
+    color: #ff0000; /* Intense Red */
+    font-size: 32px;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 5px black;
+}
+
+/* Navigation Menu */
+nav {
+    background-color: #660000; /* Dark Blood Red */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px black;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #ffcccc; /* Light Red */
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    background-color: #ff0000; /* Bright Red */
+    color: black;
+    box-shadow: 0px 0px 10px #ff0000;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #660000;
+    color: #ffcccc;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0px -5px 10px black;
+}
+
+footer a {
+    color: #ff0000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #ff4d4d;
+}

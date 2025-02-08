@@ -1,0 +1,83 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #2b0000; /* Dark Red Background */
+    color: #ff4d4d; /* Bright Red Text */
+    text-align: center;
+}
+
+/* Header Styles */
+h1, h2 {
+    color: #ff0000; /* Intense Red */
+    font-size: 28px;
+    margin-bottom: 10px;
+    text-shadow: 3px 3px 5px black;
+}
+
+/* Container Box */
+.container {
+    width: 80%;
+    max-width: 400px;
+    margin: 50px auto;
+    background: #660000; /* Dark Blood Red */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px #ff0000;
+}
+
+/* Matrix Input Fields */
+#matrix {
+    margin: 20px;
+}
+
+input {
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    background-color: black;
+    color: #ff0000;
+    border: 1px solid #ff4d4d;
+    margin: 5px;
+    font-size: 16px;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #ff0000; /* Bright Red */
+    color: black;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #ff4d4d;
+}
+
+button:hover {
+    background-color: black;
+    color: #ff0000;
+    box-shadow: 0px 0px 20px #ff0000;
+}
+
+/* Result Display */
+p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffcccc;
+    margin-top: 10px;
+}
+
+/* Footer */
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #660000;
+    color: #ffcccc;
+    font-size: 14px;
+    border-radius: 5px;
+    box-shadow: 0px -5px 10px black;
+}
