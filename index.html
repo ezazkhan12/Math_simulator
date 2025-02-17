@@ -3,31 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&display=swap" rel="stylesheet">
-    <title>Home Page</title>
+    <link rel="stylesheet" href="index.css" type="text/css" media="all" />
+    <title>SkillStream</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F4F5F0, #808080, #000000);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Moving Header */
+        .header {
+            width: 100%;
+            background: #000000;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            animation: moveText 5s infinite linear alternate;
+        }
+
+        @keyframes moveText {
+            0% { transform: translateX(-10px); }
+            100% { transform: translateX(10px); }
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #0000FF;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 0px 15px #808080;
+            margin-bottom: 50px;
+        }
+
+        ul {
+            list-style: none;
+            text-align: left;
+            padding: 0;
+        }
+
+        li {
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .box {
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 30px;
+            font-weight:bold;
+            color: white;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .box:nth-child(1) { background: #ff4757; }
+        .box:nth-child(2) { background: #1e90ff; }
+        .box:nth-child(3) { background: #2ed573; }
+        .box:nth-child(4) { background: #ffcc00; }
+
+        .box:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        /* Non-Moving Footer */
+        .footer {
+            width: 100%;
+            background: #000000;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: white;
+            position: relative;
+            bottom: 0;
+        }
+
+        /* Social Media Right Wall */
+        .social {
+            position: fixed;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .social a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: black;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 22px;
+            transition: all 0.3s ease;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .social a:hover {
+            transform: scale(1.2);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .social a:nth-child(1) { background: #E1306C; color: white; }  /* Instagram */
+        .social a:nth-child(2) { background: #1877F2; color: white; }  /* Facebook */
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .container {
+                max-width: 90%;
+            }
+            .social {
+                top: auto;
+                bottom: 20px;
+                right: 10px;
+                flex-direction: column;
+                padding: 5px;
+            }
+            .instagram-icon {
+    width: 40px;  /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    border-radius: 50%; /* Makes it circular */
+    transition: transform 0.3s ease-in-out;
+}
+
+.instagram-icon:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+}
+.Facebook-icon {
+    width: 40px;  /* Adjust width as needed */
+    height: 40px; /* Adjust height as needed */
+    border-radius: 50%; /* Makes it circular */
+    transition: transform 0.3s ease-in-out;
+}
+
+.Facebook-icon:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+}
+        }
+        .exit-container {
+    text-align: center;
+    margin: 40px 0; /* Adds spacing above the footer */
+}
+
+.exit-button {
+    background: linear-gradient(45deg, #ff0000, #b30000);
+    color: white;
+    font-size: 22px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.6);
+    transition: 0.3s ease-in-out;
+    display: inline-block;
+}
+
+.exit-button:hover {
+    background: darkred;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px rgba(255, 0, 0, 0.9);
+}
+
+/* Position Exit Button Above Footer */
+.footer {
+    margin-top: 20px;
+}
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>MATHS_SIMULATOR</h1>
-    <p>....................................................................................................................................................................</p>
-    
-    <!-- Navigation Links -->
-    <nav>
-        <ul>
-            <li><a href="contect.html">multiplication</a></li>
-            <li><a href="about.html">matrix_addition</a></li>
-            <li><a href="home.html">Order_multiplication</a></li>
-              <li><a href="page.html">Determinate</a></li>
-                <li><a href="example.html">cofactors</a></li>
-                  <li><a href="team.html">Adjoint</a></li>
-                    <li><a href="head.html">Inverse_matrix</a></li>
-                      <li><a href="meta.html">Gaussian</a></li>
-        </ul>
-    </nav>
-    <footer>
-    Click here for full matrix guide <a href="https://youtube.com/playlist?list=PL8VYq471tmyIla9MBY_yEu06gViTyCTPs&si=D0o-5i0wQ1k2u3Zp" target="_blank">Click here for full matrix guide</a>
-</footer>
-   </body>
-  
-<footer>by wizard.build</footer>
+
+    <div class="header">SKILL-STREAM</div>
+
+    <div class="content">
+        <div class="container">
+            <ul>
+                <li><a class="box" href="HAP_C.html">HAP</a></li>
+                <li><a class="box" href="Pharmaceutics_C.html">Pharmacetics</a></li>
+                <li><div class="box"href="PIOC_C.html">PIOC</div></li>
+                <li><div class="box"href="PA_C.html">Pharmaceutical Analysis</div></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="social">
+        <a href="https://www.instagram.com/__mind_wizard__?igsh=MTBpd2lpeWZyY2p1Ng==" target="_blank"> <img src="/social-media-instagram-icon-transparent-background-172928815.jpg"Instagram" class="instagram-icon"></a>
+        <a href="https://www.facebook.com/" target="_blank"><img src="/vector-blue-social-media-logo_1080184-225.jpg"facebook" class="Facebook-icon"></a>
+    </div>
+<!-- Exit Button -->
+<div class="exit-container">
+    <button class="exit-button" onclick="exitPage()">EXIT</button>
+</div>
+
+<!-- Footer -->
+<div class="footer">by Wizard.Build</div>
+
+<script>
+    function exitPage() {
+        if (confirm("Are you sure you want to exit?")) {
+            window.close(); // Try to close the tab
+            window.location.href = "about:blank"; // Fallback: Redirects to a blank page
+        }
+    }
+</script>
+
+</body>
 </html>
